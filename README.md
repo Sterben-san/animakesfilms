@@ -67,7 +67,7 @@ npm run build
 
 For a public-only export instead, run `npm run build:static`. It replaces `dist`, so run `npm run build` again before deploying the complete app.
 
-With an isolated MySQL test database configured, the suite runs 54 checks across all editor sections, public navigation/video/filter controls, crop/upload workflows, authentication, request validation, concurrent saves, draft privacy, media recovery, persistence, and static export. See [docs/verification-report.md](docs/verification-report.md) for reproduced issues, diagnostic evidence and browser coverage.
+With an isolated MySQL test database configured, the suite runs 56 checks across all editor sections, public navigation/video/filter controls, crop/upload workflows, authentication, request validation, concurrent saves, draft privacy, media recovery, persistence, static export, and LiteSpeed-style entry loading. See [docs/verification-report.md](docs/verification-report.md) for reproduced issues, diagnostic evidence and browser coverage.
 
 `npm run build:static` creates a **public static snapshot** in `dist/`, including published content, project detail pages and referenced public media. Draft records and media referenced only by drafts are excluded. It excludes administrator credentials and server code. The admin studio requires the running Node.js server and persistent storage; a static snapshot alone cannot provide login, editing or uploads. This local app has not been deployed.
 

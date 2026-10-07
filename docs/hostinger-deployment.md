@@ -70,4 +70,10 @@ Preparation verified on 7 October 2026: all 54 checks passed using an isolated r
 
 Official guidance: [Node.js hosting options](https://www.hostinger.com/support/node-js-hosting-options-at-hostinger/) and [deploying a Node.js app, including Other framework settings](https://www.hostinger.com/support/how-to-deploy-a-nodejs-website-in-hostinger/).
 
+## LiteSpeed startup compatibility
+
+Hostinger's runtime log confirmed that `lsnode.js` loads the entry using `require()`. The original top-level `await` in `app.js` failed before configuration or database initialization with `ERR_REQUIRE_ASYNC_MODULE`. The entry now starts asynchronously using dynamic `import()` without top-level await. Regression checks load it with `require()`, verify health/public/admin responses and clean shutdown, and verify readable startup failures. The same checks can target the built artifact with `TEST_ENTRYPOINT` set to its absolute `app.js` path.
+
+Runtime messages prefixed `[portfolio-startup]` identify configuration validation, storage initialization and HTTP startup. They do not print passwords or connection strings. If a later deployment reports an unresolved database-host placeholder or denied database access, correct the private environment values; a successfully published build alone does not establish that the app has started.
+
 Only `README-DEPLOY.md` from the read-only VES reference was consulted for this hosting preparation. Its site content and application implementation were not copied or modified.

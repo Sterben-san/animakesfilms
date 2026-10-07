@@ -5,7 +5,9 @@ import { hostingConfig } from '../server/config.mjs';
 export async function startPortfolio(env = process.env) {
   const root = fileURLToPath(new URL('../', import.meta.url));
   const config = hostingConfig(env, root);
+  console.info(`[portfolio-startup] configuration valid; initializing ${env.DATABASE_URL ? 'MySQL' : 'local'} storage`);
   const server = await createPortfolioServer({ root, dataDir: config.dataDir, publicOrigin: config.publicOrigin, env });
+  console.info('[portfolio-startup] storage initialized; starting HTTP listener');
   await new Promise((resolve, reject) => { server.once('error', reject); server.listen(config.port, config.host, resolve); });
   console.info(`Portfolio listening on ${config.host}:${config.port}; public address ${config.publicOrigin || `http://localhost:${config.port}`}`);
   const shutdown = () => {
