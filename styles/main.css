@@ -134,7 +134,7 @@ img{max-width:100%;display:block}
 .nav__menu{
   width:44px;height:44px;border-radius:12px;border:1px solid rgba(var(--text-rgb),.08);
   background:rgba(var(--text-rgb),.03);cursor:pointer;
-  display:none;align-items:center;justify-content:center;gap:5px;flex-direction:column;
+  display:flex;flex-shrink:0;align-items:center;justify-content:center;gap:5px;flex-direction:column;
   transition:transform .2s ease, border-color .2s ease;
 }
 .nav__menu:hover{transform:translateY(-1px);border-color:rgba(var(--accent-rgb),.28)}
