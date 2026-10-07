@@ -1,0 +1,26 @@
+{
+  "name": "animakesfilms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Editable filmmaker portfolio with a protected admin studio and Hostinger deployment support",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "start": "node app.js",
+    "build": "node scripts/build-hostinger.mjs",
+    "admin:setup": "node scripts/setup-admin.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build:static": "node scripts/build.mjs",
+    "validate:hosting": "node scripts/validate-hosting.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  },
+  "dependencies": {
+    "mysql2": "^3.24.5"
+  },
+  "main": "app.js"
+}
