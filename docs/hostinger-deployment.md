@@ -5,7 +5,7 @@ This is a **Node.js backend app**, including the portfolio and its admin dashboa
 ## Business / Cloud: GitHub deployment
 
 1. In hPanel, create a MySQL database and database user for this portfolio. Save the database host, database name, username and password. Use the connection host supplied by Hostinger, not an assumed `localhost`.
-2. In Websites → Add/Create website → Node.js Web App, import `Sterben-san/animakesfilms`. Connect GitHub and grant Hostinger access to this repository. The repository is private.
+2. In Websites → Add/Create website → Node.js Web App, import `https://github.com/Sterben-san/animakesfilms`. The repository is public, so Hostinger can import its URL without GitHub account authorization. For GitHub-connected automatic deployment, connect your account and grant Hostinger access to this repository.
 3. Choose branch `main`, framework **Other**, Node.js **22.x**, and repository root `.`. Install command: `npm ci`. Build command: `npm run build`. Output directory: `dist`. Entry file: `app.js` inside that output directory (use `dist/app.js` if the field explicitly requests a repository-relative path). Start command, where available: `npm start`.
 4. Add the environment variables below **before the first deployment**. Use the actual final HTTPS domain, or the exact temporary Hostinger HTTPS domain while previewing. Set `APP_URL` again when changing domains, then redeploy.
 5. Deploy, connect the domain and enable SSL. Requests must reach the backend with the configured domain in the HTTP `Host` header. A secondary `www` domain should redirect to the canonical domain at the hosting layer.
@@ -62,7 +62,7 @@ Terminate HTTPS in Nginx/CloudPanel, preserve the canonical Host header and prox
 - Create the database and supply its private connection details.
 - Select the HTTPS domain and configure `APP_URL`.
 - Set the hosted admin password privately.
-- Connect the private GitHub repository and verify an actual hPanel deployment and redeploy.
+- Import the public GitHub repository and verify an actual hPanel deployment and redeploy.
 
 The application has been prepared and tested locally; Hostinger account settings, DNS, SSL and live deployment cannot be verified before these values are supplied.
 
