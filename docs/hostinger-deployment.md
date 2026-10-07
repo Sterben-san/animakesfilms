@@ -48,7 +48,7 @@ npm run build
 
 With real environment variables available, run `npm run validate:hosting`. It checks configuration structure; application startup additionally verifies the database connection, table permissions, packet limit and first-time admin credentials.
 
-The optional CI template in `docs/github-actions-ci.example.yml` runs the full test suite against an isolated MySQL 8.4 service on Node 22. It is not active: the current GitHub credential cannot publish workflow files. To enable it later, copy it to `.github/workflows/ci.yml` using GitHub access with workflow permission. Locally, the database test can be enabled using `TEST_DATABASE_URL` pointing to a **disposable test database only**, with a name ending in `_test`: it deletes its three `portfolio_*` tables before running. Never point this variable at a live database.
+The active GitHub Actions workflow in `.github/workflows/ci.yml` runs the full test suite against an isolated MySQL 8.4 service on Node 22 on pushes and pull requests. It uses read-only repository permissions; deployment does not require workflow write access. Locally, the database test can be enabled using `TEST_DATABASE_URL` pointing to a **disposable test database only**, with a name ending in `_test`: it deletes its three `portfolio_*` tables before running. Never point this variable at a live database.
 
 ## VPS alternative
 
@@ -66,7 +66,7 @@ Terminate HTTPS in Nginx/CloudPanel, preserve the canonical Host header and prox
 
 The application has been prepared and tested locally; Hostinger account settings, DNS, SSL and live deployment cannot be verified before these values are supplied.
 
-Preparation verified on 7 October 2026: all 54 checks passed using an isolated real MySQL server, including HTTPS-origin checks, Secure cookies, conflicting revisions, all content sections, a 10 MiB upload and persistence through server restart. The `dist` application started in production mode and served its health endpoint, public page, admin dashboard and admin JavaScript. `npm audit --omit=dev` reported zero known vulnerabilities. Local verification used Node 26 and MySQL 26; the optional GitHub workflow template targets Node 22 and MySQL 8.4 and has not been run remotely.
+Preparation verified on 7 October 2026: all 54 checks passed using an isolated real MySQL server, including HTTPS-origin checks, Secure cookies, conflicting revisions, all content sections, a 10 MiB upload and persistence through server restart. The `dist` application started in production mode and served its health endpoint, public page, admin dashboard and admin JavaScript. `npm audit --omit=dev` reported zero known vulnerabilities. Local verification used Node 26 and MySQL 26; GitHub Actions targets Node 22 and MySQL 8.4. Check the repository Actions tab for current remote results.
 
 Official guidance: [Node.js hosting options](https://www.hostinger.com/support/node-js-hosting-options-at-hostinger/) and [deploying a Node.js app, including Other framework settings](https://www.hostinger.com/support/how-to-deploy-a-nodejs-website-in-hostinger/).
 
